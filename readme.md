@@ -11,5 +11,8 @@ This is a simple To Do mobile app built in react native. Simply add to-dos via t
   * To Preview in ios: Install [X-Code](https://apps.apple.com/us/app/xcode/id497799835)
   * To Preview in Andriod: Install [Android Studio](https://developer.android.com/studio)
 
+## Technologies
+React-Native w/Expo CLI, Javascript, JSX
+
 ## Contributors
 * [Evan Grabenstein](https://github.com/evangdesigns)
