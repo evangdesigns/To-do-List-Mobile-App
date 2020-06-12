@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard, TouchableWithoutFeedbackBase} from 'react-native';
 import Header from './components/header';
 import TodoItem from './components/todoItem';
+import AddToDo from './components/addTodo';
+import Sandbox from './components/sandbox';
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -16,22 +18,44 @@ export default function App() {
     });
   }
 
+  const submitHandler = (text) => {
+
+    if(text.length > 3) {
+      setTodos((prevTodos) => {
+        return [
+          {text: text, key: Math.random().toString() },
+          ...prevTodos
+        ]
+      })
+    } else {
+      Alert.alert('OOPS!', 'ToDos must be more than three characters long', [
+        {text: 'OK', onPress: () => console.log('alert closed')}
+      ])
+    }
+  }
+
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        {/* to form  */}
-        <View style={styles.list}>
-          <FlatList
-          data={todos}
-          renderItem={({ item }) => (
-            <TodoItem item={item} pressHandler={pressHandler}/>
-          )}
-          />
+    // <Sandbox/>
+
+    <TouchableWithoutFeedback onPress={() => {
+      Keyboard.dismiss();
+      console.log('dismissed keyboard')
+    }}>
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.content}>
+          <AddToDo submitHandler={submitHandler}/>
+          <View style={styles.list}>
+            <FlatList
+            data={todos}
+            renderItem={({ item }) => (
+              <TodoItem item={item} pressHandler={pressHandler}/>
+            )}
+            />
+          </View>
         </View>
       </View>
-
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -41,9 +65,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: {
-    padding:40,
+    paddingHorizontal:40,
+    flex:1,
   },
   list: {
+    flex:1,
     marginTop:20,
   }
 });
