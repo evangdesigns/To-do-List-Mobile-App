@@ -12,7 +12,7 @@ This is a simple To Do mobile app built in react native. Simply add to-dos via t
   * To Preview in Andriod: Install [Android Studio](https://developer.android.com/studio)
 
 ## Technologies
-React-Native w/Expo CLI, Javascript, JSX
+React-Native w/Expo CLI, Javascript, JSX, CSS Knowledge, and a partridge in a pear tree.
 
 ## Contributors
 * [Evan Grabenstein](https://github.com/evangdesigns)
